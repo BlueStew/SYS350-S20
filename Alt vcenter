@@ -1,0 +1,1 @@
+Simply put, make a Windows virtual machine on the ESXi host and install vCenter Server on to the Windows host.  Then add the ESXi to vCenter.
