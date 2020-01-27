@@ -1,0 +1,4 @@
+1 Download the vCenter 6.5 ISO on to a windows host and mount it.
+2 Locate the win 32 installer gui and follow the on screen instructions
+3 Connect to the vCenter address and log in
+4 Useing the iESX address and its creds add the iESX server to vCenter using the add hosts function
