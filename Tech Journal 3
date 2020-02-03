@@ -1,0 +1,2 @@
+1. Go to Vcenter and import a host profile from your host.  Name it XXXX Gold image.  A gold image is copy of the orginal that won't be changed.
+2. Import from the host agin and edit the host profiles settings.  Run a check and when it fails, hit Remediate.
