@@ -2,3 +2,33 @@
 2. Create a database in vShpere 
 3. Create a network adapter (switch)
 4. Using the new network adapter, create portgroups as vlans and label them
+
+ALT
+1Get the datacenter where you want to create the vSphere distributed switch.
+$myDatacenter = Get-Datacenter -Name "MyDatacenter"
+
+2Get all hosts in your datacenter.
+$vmHosts = $myDatacenter | Get-VMHost
+
+3
+Create a new vSphere distributed switch.
+$myVDSwitch = New-VDSwitch -Name "MyVDSwitch" -Location $myDatacenter
+The distributed switch is created with no port groups.
+4	Add the hosts in your datacenter to the distributed switch.
+Add-VDSwitchVMHost -VDSwitch $myVDSwitch -VMHost $vmHosts
+
+5
+Get a physical network adapter from your hosts.
+$hostsPhysicalNic = $vmHosts | Get-VMHostNetworkAdapter -Name "vmnic2"
+
+6
+Add the physical network adapter to the distributed switch that you created.
+Add-VDSwitchPhysicalNetworkAdapter -VMHostNetworkAdapter $hostsPhysicalNic -DistributedSwitch $myVDSwitch
+
+7
+Create a new distributed port group with 1000 ports and add it to the distributed switch.
+$myVDPortGroup = New-VDPortgroup -Name "MyVMsPortGroup" -VDSwitch $myVDSwitch -NumPorts 1000
+
+8
+Connect all virtual machines running on the hosts in your datacenter to the distributed port group.
+$vmHosts | Get-VM | Get-NetworkAdapter | Set-NetworkAdapter -PortGroup $myVDPortGroup
