@@ -1,0 +1,4 @@
+1. Installed and Configured ESXI on a Second Server
+2. Create a database in vShpere 
+3. Create a network adapter (switch)
+4. Using the new network adapter, create portgroups as vlans and label them
