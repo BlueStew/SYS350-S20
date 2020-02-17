@@ -1,0 +1,14 @@
+1. Add a ISCSI Apadpter through the stroage section of Cluster
+2. Set the traget as dynamic though the IP/ name of the share
+3. Do the Smae for the sharde target.
+4. Navigate to the floder through the stroage browser.
+
+Alt
+From the CLI
+To enable the iSCSI Initiator, run the command:
+
+# esxcfg-swiscsi -e
+
+To add iSCSI targets, run the command:
+
+# vmkiscsi-tool -D -a IP:3260 sharename
