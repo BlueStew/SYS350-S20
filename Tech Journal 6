@@ -1,0 +1,17 @@
+1. Create a virtual machine
+2. Place the operating system in the the VM cd tray and walk through the install
+3. Make any changes that need to be made (applications, settings, etc.)
+4. Export the VM as a template
+5. Go to Menu > Policies and Profiles and click Customization Specification.
+6. Make a new Customization Specification
+7. Clone a mchine from the templeate and start it up
+
+Alt
+From CLI
+1. C:> New-VM -Name 'TestVM' –VMHost 'VMHost-1' -Datastore 'TestDatastore' -DiskGB 40 -MemoryGB 8 -NumCpu 2 -NetworkName 'Virtual Machine Network
+2. C:> New-Template -VM 'TestVM' -Name "Server2012R2Template" -Datastore 'TestDatastore' -Location 'TestLocation'
+3. To make a Customization Specification; C:> New-OSCustomizationSpec -Name 'WindowsServer2012' -FullName 'TestName'.... followed by whatever else needs to be changed
+4. To deploy a VM froma the templeate, along with the Customization Specification;
+$OSSpecs = Get-OSCustomizationSpec -Name 'WindowsServer2012'
+$VMTemplate = Get-Template -Name 'Server2012R2Template'
+New-VM -Name 'TestVM' -Template $VMTemplate -OSCustomizationSpec $OSSpec -VMHost 'VMHost-1' -Datastore 'TestDatastore
