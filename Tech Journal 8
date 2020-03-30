@@ -1,0 +1,18 @@
+Vcenter
+1. Login to the vSphere remote admin page
+2. Go to upgrades on the left hand menu
+3. Select the latest update and then install it
+
+ESXI
+1. SSH in the appliacne as root
+2. Enter " esxcli software profilr update -p" the version that you want to update to "-d" 
+the URL to get it
+
+Alt
+1.  Mount the ISO
+2.  SSH into vCenter
+3.  Run "software-packages install --iso --acceptEulas"
+4.  Run "shutdown reboot -r updating"
+
+ESXI
+1.  Depending on the ESXI version, a usb with ISO installer can be used at boot to upgraded the existing installtion.
