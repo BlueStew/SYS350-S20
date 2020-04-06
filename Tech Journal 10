@@ -1,0 +1,6 @@
+1. Connect to vSphere in powershell
+2. Open up the powershell IDE
+3. Create the script, save and run it in powershell
+
+Alt
+1. Utlize vSphere powerCLI rather than the powershell cmdlet that windows uses
