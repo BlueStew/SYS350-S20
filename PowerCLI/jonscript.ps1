@@ -1,0 +1,2 @@
+﻿Get-VM | Select-Object Name, NumCPU, MemoryMB, ProvisionedSpaceGB | Export-Csv "Report.csv" <# this line outputs info on all VMs to a csv file#>
+Update-Tools "windtets"  <# this line updates Vm-tols on the indicated VM#>
