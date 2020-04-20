@@ -1,0 +1,27 @@
+Sites and Services
+1.  Open up Root Console on a DC with the DNS role installed and running
+2.  Add the Sites and Services Snap in
+3.  Move to Sites and add Sites
+4.  Go to Subnets and added the subnets while associating them with the correct sites
+5.  Go Inter Sites Transport> IP and create links and bridges based off of the sites layout
+6.  For the DNS section, open up DNS manager and go to Conditional Forwarder and add the DNS server and make sure that there's
+a DNS entrie for that server.
+
+ADCS/ADFS
+This took a very long time.  To type out in full would take atleast another page.
+So instaed, I'm going to put some links that were heplful and getting this to work.
+https://www.virtuallyboring.com/setup-microsoft-active-directory-certificate-services-ad-cs/
+https://www.virtuallyboring.com/how-to-setup-microsoft-active-directory-federation-services-adfs/
+https://nolabnoparty.com/en/adfs-3-0-ssl-certificate-signing-request-pt-2/
+Note the above ^ didn't work, so I had to use ISS to make the cert.
+http://www.the-teqnician.nl/wp/2017/01/adfs-on-w2016-idpinitiatedsignon-aspx-page-is-by-default-disabled/
+
+ALT Sites and Services
+1. Install-WindowsFeature "Name RSAT-AD-PowerShell"
+2. Import-Module ActiveDirectory
+3. New-ADReplicationSite -Name "Second-Site"  
+Set-ADReplicationSiteLink -Identity "DEFAULTIPSITELINK" -sitesIncluded @{Add="Second-Site"}
+4. New-ADReplicationSubnet -Name "10.2.0.0/24" -Site "Second-Site"
+
+Alt ADCS/ADFS
+1. Just use this script: https://gist.githubusercontent.com/bunchc/616446049eec0b2497051ca292e816b7/raw/cefb4852ed132dccd95886534363168a49a26b4d/install_adfs.ps1
