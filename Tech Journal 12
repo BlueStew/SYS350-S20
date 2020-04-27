@@ -1,0 +1,23 @@
+LAB 1
+1. Go to the AD
+2. In the Users, create a group called Help Desk
+3. Add the nonadmin domain account to that group
+4. Go to veiw and enable adavnced options
+5. Right click on Helpdesk and to deleagte control and deleagte Domain Join and Password Reset
+6. Righ click on the domain and change the ms-DS-machineaccountquota to 0
+
+LAB 1 Alt
+1. Open up powershell as Admin
+2. Type and replace names as needed: New-ADGroup -Name "RODC Admins" -SamAccountName RODCAdmins -GroupCategory Security -GroupScope Global
+3. To add group meber type and replace names as needed: Add-ADGroupMember -Identity SvcAccPSOGroup -Members SQL01
+4. Then Grant-ADPermission -Group DistinguishedName -AdRights (place rights here)
+5. To prvent domain users from being able to add computers to the domain, type: Set-ADDomain -Identity <DomainName> `
+   -Replace @{"ms-DS-MachineAccountQuota"="0"}
+   
+LAB 2
+1. From Admin tools on the control panel, go to CA, click on all tasks, backup and foloow the onscreen instuctions
+2. Go to Issued Certificates and revoke them
+3. Remove the Active Directory Certificate Services Role
+4. Verfiy FSMO roles with: Netdom query fsmo
+5. Romove the AD DS role and demote both controllers, using the Remove Roles and Features on the server manager
+6. Note that removing th last DC will also remove the DNS.  Demote the DCs on at a time.  The last one should be the Pirmary DC
